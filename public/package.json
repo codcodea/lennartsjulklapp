@@ -1,0 +1,24 @@
+{
+  "name": "smhi",
+  "version": "1.0.0",
+  "description": "SMHI dev project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "deepai": "^1.0.15",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "file-system": "^2.2.2",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
+    "path": "^0.12.7",
+    "requests": "^0.3.0",
+    "tabulator-tables": "^4.5.1"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">,
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" href="stylesheet.css" rel="stylesheet">
+    <title>Lennarts julklapp 2019</title>
+    <script src="https://cdnjs.deepai.org/deepai.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="header">
+<h3 style="float:left">Lennarts julklapp!</h3>
+</div>
+
+<div class="topnav">
+<a href="#">Hem</a>
+<a href="#">Så funkar det</a>
+<a href="#">Om</a>
+</div>
+
+
+
+<div class="column">
+        
+        
+    <div>
+        <img id="output"> 
+        <br>
+        <input type="button" value="Klar" id="knapp"> 
+    </div>
+
+    <div id="idbild" class="gemensam bild">
+    </div> 
+
+    <div id="idtext" class="gemensam text">
+        <h3> Lennarts julklapp!</h3>
+        <p>I år har den artficiella intelligensen nått nya höjder! </p>    
+        <p>Därför blir min julklapp till dig en sida där du kan färglägga bilder från släktforskningen om du vill!</p>
+        <p>Klicka på "Välj Fil" och sedan "Färgbild!". Vänta några sekunder för att se det artificiella trolleriet! </p> 
+        <p>Häpnadsväckande!</p>
+        <p>God jul! Mvh, Fredrik</p>
+    </div>
+
+    <br><br>
+
+    <div id="myForm" >
+
+        <form id="theForm" class="formclass">
+            <fieldset style="margin-left:20px; border: 1px solid rgb(211, 211, 211); box-shadow: 2px 2px 2px rgb(184, 184, 184);">
+            <legend>Färglägg dina svartvita bilder:</legend>
+
+            <input type="file" id="sourceImg"><br>
+            <input type="submit" value="Submit"> <br>
+        
+        </form>
+    </div>
+
+</div>  
+<br>
+
+
+<div class="footer">
+<p> &#9400 2019</p>
+</div>
+
+
+<script>
+
+
+window.addEventListener('load', (e) => {
+    
+    console.log("first event listener!")
+    const idBild = document.getElementById('idbild')
+    idBild.style.opacity = '0.8'
+    const idText = document.getElementById('idtext')
+    idText.style.opacity = '0.8'
+    const idForm = document.getElementById('theForm')
+    myForm.style.opacity = '1'
+
+})
+
+const myForm = document.getElementById("theForm");
+const passedImg = document.getElementById("sourceImg");
+
+myForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+   
+    const formData = new FormData();
+    formData.append('passedImg', passedImg.files[0])
+
+    uploadFile(formData);
+    fadeOut();
+
+        function fadeOut() {
+
+        //Transition blocks till 0 
+        const idBild = document.getElementById('idbild')
+        idBild.style.opacity = '0'
+        const idText = document.getElementById('idtext')
+        idText.style.opacity = '0'
+        const idForm = document.getElementById('myForm')
+        myForm.style.opacity = '0'
+
+        //Lyssnar på när animationen är klar, sedan...
+        idbild.addEventListener('transitionend', onTransitionEnd, false);
+
+        function onTransitionEnd() {
+        console.log("nu e den klar")
+
+        //Tar bort blocken helt så att ny bild rymms
+        idBild.style.display = 'none'
+        idText.style.display = 'none'
+        myForm.style.display = 'none'
+
+    }}
+    
+});
+
+
+async function uploadFile(image) {
+
+    
+   
+    try {
+    const response = await fetch ('/img', {      
+        method: 'POST',
+        body: image
+    })
+    if (response.ok) {
+        console.log('Server response ' + response.statusText)
+
+        const serverRes = await response.text() //url till resultatet
+
+        let imageNew = document.getElementById('output'); 
+        imageNew.src = serverRes;
+
+        imageNew.addEventListener('load', uppLaddad, false);
+
+        function uppLaddad() {
+        console.log("nu e uppladdnignen klar")
+
+        //tar fram gömt element och knapp "class hidddens"
+        let hiddenBut = document.getElementById('knapp')
+        hiddenBut.style.display = 'block'
+    
+        //populerar output med bild och gör en transistion
+        let output = document.getElementById('output')
+        output.style.WebkitFilter = "grayscale(0%)";
+        
+        
+        } 
+    }
+
+
+} catch (error) {
+    console.log("try error")
+}
+
+}
+
+let listenTo = document.getElementById('knapp')
+listenTo.addEventListener("click", (e) => {
+
+  console.log ("Klick!")
+  window.location.reload(true); 
+});
+
+
+</script>
+
+</body>
+
+</html>

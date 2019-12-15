@@ -4,8 +4,8 @@ tasks:
 - export DEPLOYPATH=/home/lennartcp/repositories/lennartsjulklapp
 - /bin/cp -R public $DEPLOYPATH
 - /bin/cp -R uploads $DEPLOYPATH
-- /bin/cp index.html $DEPLOYPATH
+- /bin/cp index.js $DEPLOYPATH
 - /bin/cp package.json $DEPLOYPATH
-- /bin/cp mammy.jpg $DEPLOYPATH
-- /bin/cp package-lockjson $DEPLOYPATH
+- /bin/cp package-lock.json $DEPLOYPATH
 - /bin/cp README.md $DEPLOYPATH
+- /bin/cp .cpanel.yml $DEPLOYPATH

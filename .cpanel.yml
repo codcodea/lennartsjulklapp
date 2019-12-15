@@ -5,8 +5,7 @@ tasks:
 - /bin/cp -R public $DEPLOYPATH
 - /bin/cp -R uploads $DEPLOYPATH
 - /bin/cp index.html $DEPLOYPATH
-- /bin/cp .env $DEPLOYPATH
 - /bin/cp package.json $DEPLOYPATH
-- /bin/cp  mammy.jpg $DEPLOYPATH
-- /bin/cp  package-lockjson $DEPLOYPATH
+- /bin/cp mammy.jpg $DEPLOYPATH
+- /bin/cp package-lockjson $DEPLOYPATH
 - /bin/cp README.md $DEPLOYPATH
